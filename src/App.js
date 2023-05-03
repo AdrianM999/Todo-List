@@ -1,8 +1,18 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import NewTodoForm from './NewTodoForm';
 
 function App() {
-  const [todos, setTodos] = useEffect([]);
+  const [todos, setTodos] = useState(() => {
+    const localValue = localStorage.getItem('ITEMS')
+    if (localValue == null) return [];
+
+    return JSON.parse(localValue); 
+  });
+
+  useEffect(() => {
+    localStorage.getItem('ITEMS', JSON.stringify(todos))
+  }, [todos])
 
   const addTodo = (title) => {
     setTodos(currentTodos => {
@@ -33,7 +43,8 @@ function App() {
 
   return (
     <>
-
+    <h1>Todo List</h1>
+      <NewTodoForm addTodo={addTodo}/>
     </>
   );
 }
