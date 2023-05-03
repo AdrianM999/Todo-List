@@ -11,17 +11,22 @@ const handleSubmit = (e) => {
 
     return (
         <form onSubmit={handleSubmit} className='form'>
-            <label htmlFor="item" className="label">
-                Add new Item
-                <input
-                id="item"
-                value={newItem}
-                onChange={(e) => setNewItem(e.target.value)}
-                />
-            </label>
-            <button className="btn">
-                Add
-            </button>
+        <label htmlFor="item" className="label">
+            Add new Item
+        </label>
+        <input
+            id="item"
+            value={newItem}
+            onChange={(e) => setNewItem(e.target.value)}
+            className="input"
+            type='text'
+            required
+            title="Don't be lazy, do something))"   
+        />
+        <button className="btn">
+            Add
+        </button>
         </form>
+
     )
 }

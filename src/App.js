@@ -1,4 +1,5 @@
 import './App.css';
+import './styles.css';
 import { useState, useEffect } from 'react';
 import NewTodoForm from './NewTodoForm';
 import TodoList from './TodoList';
@@ -44,14 +45,17 @@ const toggleTodo = (id, completed) => {
 
   return (
     <>
-    <h1>Todo List</h1>
-      <NewTodoForm addTodo={addTodo}/>
-      
-      
-      <TodoList 
-      todos={todos}
-      toggleTodo={toggleTodo}
-      deleteTodo={deleteTodo}/>
+      <div className='container-heading'>
+          <h1 className='heading'>Todo List</h1>
+      </div>
+      <div className='container'>
+          <NewTodoForm addTodo={addTodo}/>
+          <TodoList 
+            todos={todos}
+            toggleTodo={toggleTodo}
+            deleteTodo={deleteTodo}
+          />
+      </div>
     </>
   );
 }
