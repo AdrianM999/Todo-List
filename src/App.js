@@ -1,7 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import NewTodoForm from './NewTodoForm';
-import TodoItem from './TodoItem';
 import TodoList from './TodoList';
 
 function App() {
