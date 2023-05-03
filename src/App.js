@@ -1,24 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [todos, setTodos] = useEffect([]);
+
+  const addTodo = (title) => {
+    setTodos(currentTodos => {
+      return [...currentTodos,
+              {id: crypto.randomUUID, title, completed: false}]
+    })
+  }
+  
+  const toogleTodo = (id, completed) => {
+    setTodos(currentTodos => {
+      return currentTodos.map(todo => {
+        if (todo.id === id) {
+          return [...todo, completed]
+        }
+
+        return todo;
+      })
+    })
+  }
+
+  const deleteTodo = (id) => {
+    setTodos(currentTodos => {
+      return currentTodos.filter(todo => {
+        return todo.id !== id 
+      })
+    })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+
+    </>
   );
 }
 
