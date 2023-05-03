@@ -1,6 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import NewTodoForm from './NewTodoForm';
+import TodoItem from './TodoItem';
+import TodoList from './TodoList';
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -17,21 +19,21 @@ function App() {
   const addTodo = (title) => {
     setTodos(currentTodos => {
       return [...currentTodos,
-              {id: crypto.randomUUID, title, completed: false}]
+              {id: crypto.randomUUID(), title, completed: false}]
     })
-  }
-  
-  const toogleTodo = (id, completed) => {
-    setTodos(currentTodos => {
-      return currentTodos.map(todo => {
-        if (todo.id === id) {
-          return [...todo, completed]
-        }
+}
 
-        return todo;
-      })
+const toggleTodo = (id, completed) => {
+  setTodos(currentTodos => {
+    return currentTodos.map(todo => {
+      if (todo.id === id) {
+        return {...todo, completed}
+      }
+
+      return todo;
     })
-  }
+  })
+}
 
   const deleteTodo = (id) => {
     setTodos(currentTodos => {
@@ -45,6 +47,12 @@ function App() {
     <>
     <h1>Todo List</h1>
       <NewTodoForm addTodo={addTodo}/>
+      
+      
+      <TodoList 
+      todos={todos}
+      toggleTodo={toggleTodo}
+      deleteTodo={deleteTodo}/>
     </>
   );
 }
